@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .header-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.header .header-links li a {
+  text-decoration: none;
+  color: black;
+}
+.header .header-links li a:hover {
+  color: blue;
+}
+.header input[type=search] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+.header .cart-icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.header .cart-icon:hover {
+  color: blue;
+}/*# sourceMappingURL=nav.css.map */
