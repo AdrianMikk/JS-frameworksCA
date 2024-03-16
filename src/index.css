@@ -196,13 +196,103 @@ h1 {
 
 /* Cart */
 
-/* .cart {
+.cart {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 20px;
-} */
+}
+
+.cart-image {
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.cart-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  /* Ensuring the list takes full width */
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.item-details {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  /* Allow item details to grow */
+}
+
+.item-name {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.item-price {
+  margin-right: 10px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.quantity-button {
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.item-quantity {
+  margin: 0 10px;
+}
+
+.remove-button {
+  padding: 5px 10px;
+  background-color: #ff4747;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.item-total {
+  font-weight: bold;
+}
+
+/* Media Queries Cart */
+@media screen and (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .item-details {
+    margin-bottom: 10px;
+  }
+
+  .quantity-container {
+    margin-right: 0;
+  }
+
+  .remove-button {
+    margin-top: 10px;
+  }
+}
+
+
 
 /* Contact */
 
@@ -276,6 +366,57 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+/* Checkout */
+
+.checkout-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Checkout.css */
+.checkout-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  /* background-color: #f9f9f9; */
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
+}
+
+.continue-shopping-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 
 
 /* Footer */
