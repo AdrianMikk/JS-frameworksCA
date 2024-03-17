@@ -1,5 +1,4 @@
-// import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Navbar from '../../components/Navigation/Header/Header';
@@ -51,6 +50,11 @@ function calculateTotalPrice(cart) {
   return cart.reduce((total, item) => total + (item.discountedPrice ? item.discountedPrice : item.price) * item.quantity, 0);
 }
 
+function formatPrice(price) {
+  const roundedPrice = Number(price).toFixed(2);
+  return `$${roundedPrice}`;
+}
+
 function ShoppingCart() {
   const cart = useShoppingCartStore((state) => state.cart || []);
   const addToCart = useShoppingCartStore((state) => state.addToCart);
@@ -58,11 +62,13 @@ function ShoppingCart() {
   const incrementQuantity = useShoppingCartStore((state) => state.incrementQuantity);
   const decrementQuantity = useShoppingCartStore((state) => state.decrementQuantity);
 
+  // Load cart from localStorage on component mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     storedCart.forEach(item => addToCart(item)); 
   }, [addToCart]);  
 
+  // Save cart to localStorage when cart changes
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cart)); 
   }, [cart]);
@@ -71,15 +77,15 @@ function ShoppingCart() {
     <div className="shopping-cart">
       <Navbar />
       <Helmet>
-        <title>Checkout</title>
+        <title>Shopping Cart</title>
       </Helmet>
-      <h1>Checkout</h1>
+      <h1>Shopping Cart</h1>
       <ul className="cart-list">
         {cart.map((data) => (
           <li key={data.id} className="cart-item">
             <div className="item-details">
               <span className="item-name">{data.name}</span>
-              <span className="item-price">{data.discountedPrice ? `$${data.discountedPrice}` : `$${data.price}`}</span>
+              <span className="item-price">{data.discountedPrice ? formatPrice(data.discountedPrice) : formatPrice(data.price)}</span>
               <div className="quantity-container">
                 <button className="quantity-button" onClick={() => decrementQuantity(data.id)}>-</button>
                 <span className="item-quantity">{data.quantity}</span>
@@ -88,20 +94,21 @@ function ShoppingCart() {
               {data.image && <img src={data.image.url} className='cart-image' alt={data.title} />} 
               <button className="remove-button" onClick={() => removeFromCart(data.id)}>Remove</button>
             </div>
-            <span className="item-total">Total: ${data.discountedPrice ? data.discountedPrice * data.quantity : data.price * data.quantity}</span>
+            <span className="item-total">Total: {formatPrice(data.discountedPrice ? data.discountedPrice * data.quantity : data.price * data.quantity)}</span>
           </li>
         ))}
       </ul>
 
-      <div>Total: ${calculateTotalPrice(cart)}</div>
+      <div>Total: {formatPrice(calculateTotalPrice(cart))}</div>
 
-      {/* Update button to Link */}
       <Link to="/checkout" className="checkout-button">Complete Order</Link>
     </div>
   );
 }
 
+
 export default ShoppingCart;
+
 
 
 
