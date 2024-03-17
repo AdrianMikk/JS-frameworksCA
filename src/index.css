@@ -194,7 +194,7 @@ h1 {
 
 /* Cart */
 
-.cart {
+.shopping-cart {
   display: flex;
   flex-direction: column;
   align-items: center;

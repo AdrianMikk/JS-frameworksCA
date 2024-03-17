@@ -83,8 +83,8 @@ function ShoppingCart() {
       <ul className="cart-list">
         {cart.map((data) => (
           <li key={data.id} className="cart-item">
+            <span className="item-name">{data.title}</span>
             <div className="item-details">
-              <span className="item-name">{data.name}</span>
               <span className="item-price">{data.discountedPrice ? formatPrice(data.discountedPrice) : formatPrice(data.price)}</span>
               <div className="quantity-container">
                 <button className="quantity-button" onClick={() => decrementQuantity(data.id)}>-</button>
