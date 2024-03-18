@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Navbar from '../../components/Navigation/Header/Header';
-import create from 'zustand';
+import { create } from 'zustand'; 
 
 export const useShoppingCartStore = create((set) => ({
   cart: [],
@@ -62,13 +62,11 @@ function ShoppingCart() {
   const incrementQuantity = useShoppingCartStore((state) => state.incrementQuantity);
   const decrementQuantity = useShoppingCartStore((state) => state.decrementQuantity);
 
-  // Load cart from localStorage on component mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     storedCart.forEach(item => addToCart(item)); 
   }, [addToCart]);  
 
-  // Save cart to localStorage when cart changes
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cart)); 
   }, [cart]);
@@ -105,7 +103,6 @@ function ShoppingCart() {
     </div>
   );
 }
-
 
 export default ShoppingCart;
 

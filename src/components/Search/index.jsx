@@ -6,7 +6,7 @@ function SearchFunction() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [error, setError] = useState(null);
-  const [setItemClicked] = useState(false);
+  const [setItemClicked, setClicked] = useState(false); 
 
   useEffect(() => {
     fetch("https://api.noroff.dev/api/v1/online-shop")
@@ -28,7 +28,7 @@ function SearchFunction() {
   }, []);
 
   const handleClick = () => {
-    setItemClicked(true);
+    setClicked(true);
   };
 
   const handleChange = (event) => {
@@ -42,7 +42,7 @@ function SearchFunction() {
       product.title.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredProducts(filtered);
-    setItemClicked(false); 
+    setClicked(false); 
   };
 
   return (
@@ -70,6 +70,7 @@ function SearchFunction() {
 }
 
 export default SearchFunction;
+
 
 
 
