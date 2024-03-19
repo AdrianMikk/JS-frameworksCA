@@ -28,7 +28,7 @@ function Checkout() {
         ))}
       </ul>
       <div>Total: {formatPrice(calculateTotalPrice(cart))}</div>
-      <Link to="../Products/index.jsx" className="continue-shopping-button">
+      <Link to="/" className="continue-shopping-button">
         Continue Shopping
       </Link>
     </div>
