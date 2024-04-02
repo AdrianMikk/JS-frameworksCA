@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
 import SearchFunction from '../../Search';
@@ -18,8 +17,6 @@ const Navbar = () => {
               <FaShoppingCart />
             </Link>
           </div>
-          {/* <input type="search" /> */}
-          {/* <SearchBar /> */}
         </nav>
       </div>
     </div>
@@ -27,6 +24,7 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
 
 
 

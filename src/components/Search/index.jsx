@@ -48,6 +48,7 @@ function SearchFunction() {
   return (
     <div>
       <input
+      className="search-bar"
         type="text"
         placeholder="Search products..."
         value={searchTerm}
