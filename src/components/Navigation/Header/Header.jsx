@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart } from 'react-icons/fa';
 import SearchFunction from '../../Search';
+import { useShoppingCartStore } from '../../../pages/Cart/index';
 
 const Navbar = () => {
+  const cart = useShoppingCartStore((state) => state.cart || []);
+
+  const totalCartItems = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <div>
       <div>
@@ -15,6 +20,7 @@ const Navbar = () => {
           <div className="cart-icon">
             <Link to="/cart">
               <FaShoppingCart />
+              {totalCartItems > 0 && <div className='cart-count'>{totalCartItems}</div>}
             </Link>
           </div>
         </nav>
@@ -24,6 +30,7 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
 
 
 

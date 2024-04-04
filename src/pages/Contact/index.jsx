@@ -7,7 +7,6 @@ const schema = Yup.object().shape({
   fullName: Yup.string().min(3, 'Too short!').required('Required'),
   subject: Yup.string().min(3, 'Too short!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  // body: Yup.string().min(3, 'Too short!').required('Required'),
   message: Yup.string().trim().min(3).max(200).required('Required')
 });
 
@@ -16,7 +15,6 @@ function ContactForm() {
     fullName: "",
     subject: "",
     email: "",
-    // body: ""
     message: ""
   });
 
