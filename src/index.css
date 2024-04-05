@@ -214,6 +214,7 @@ h1 {
 
 .cart-item {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
@@ -275,6 +276,7 @@ h1 {
 
 .shopping-cart {
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -305,7 +307,8 @@ h1 {
   }
 
   .item-details {
-    margin-bottom: 10px;
+    margin-bottom:
+      10px;
   }
 
   .quantity-container {
@@ -382,17 +385,6 @@ button:hover {
 
 /* Checkout */
 
-.checkout-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-/* Checkout */
 .checkout-container {
   max-width: 600px;
   margin: 0 auto;
