@@ -1,11 +1,13 @@
-// import React from 'react';
+import Header from '../Navigation/Header/Header';
+import Footer from '../Navigation/Footer/Footer';
 
-// const Layout =({children}) => {
-//   return (
-//     <div>
-//       <main>{children}</main>
-//     </div>
-//   );
-// }
+const Layout = () => {
+    return (
+        <>
+        <Header />
+        <Footer />
+        </>
+    );
+    };
 
-// export default Layout;
+export default Layout;

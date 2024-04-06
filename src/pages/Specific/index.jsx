@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navigation/Header/Header";
-import { FaStar } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa6";
+import { FaStar, FaRegStar } from "react-icons/fa";
 import { useShoppingCartStore } from "../Cart/index";
 
 function ProductDetails() {
@@ -11,6 +10,7 @@ function ProductDetails() {
   const [cartItemCount, setCartItemCount] = useState(0); 
   const { id } = useParams();
   const addToCart = useShoppingCartStore((state) => state.addToCart);
+  const cartItems = useShoppingCartStore((state) => state.cartItems);
 
   useEffect(() => {
     fetch(`https://v2.api.noroff.dev/online-shop/${id}`)
@@ -23,35 +23,36 @@ function ProductDetails() {
       });
   }, [id]);
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    // Calculate total cart item count
+    const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    setCartItemCount(totalCount);
+  }, [cartItems]);
 
   const handleAddToCart = () => {
     addToCart(product);
     setAddedToCart(true);
-    setCartItemCount(cartItemCount + 1); 
   };
 
   // Calculate discount if exists
-  const discount = product.discountedPrice
+  const discount = product?.discountedPrice
     ? product.price - product.discountedPrice
     : 0;
-  const discountPercentage = product.discountedPrice
+  const discountPercentage = product?.discountedPrice
     ? ((product.price - product.discountedPrice) / product.price) * 100
     : 0;
 
   return (
     <div className="product-specific">
       <Navbar cartItemCount={cartItemCount} /> 
-      <h2 className="product-title">{product.title}</h2>
-      <p className="product-details">{product.description}</p>
+      <h2 className="product-title">{product?.title}</h2>
+      <p className="product-details">{product?.description}</p>
       <img
         className="specific-image"
-        src={product.image.url}
-        alt={product.title}
+        src={product?.image?.url}
+        alt={product?.title}
       />
-      {product.discountedPrice ? (
+      {product?.discountedPrice ? (
         <div>
           <p className="price">
             <span className="original-price">£{product.price}</span>{" "}
@@ -62,14 +63,14 @@ function ProductDetails() {
           </p>
         </div>
       ) : (
-        <p className="price">£{product.price}</p>
+        <p className="price">£{product?.price}</p>
       )}
       <div className="star-rating">
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
             <label key={i}>
-              {ratingValue <= product.rating ? (
+              {ratingValue <= product?.rating ? (
                 <FaStar className="star" />
               ) : (
                 <FaRegStar className="star" />
@@ -85,6 +86,7 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
+
 
 
 
