@@ -1,3 +1,17 @@
+const HamburgerMenu = ({ isOpen, toggleMenu }) => {
+    return (
+      <div className={`hamburger-menu ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
+      </div>
+    );
+  };
+  
+  export default HamburgerMenu;
+
+
+
 // import { useState } from 'react';
 
 // const BurgerMenu = ({ categories, onSelectCategory }) => {

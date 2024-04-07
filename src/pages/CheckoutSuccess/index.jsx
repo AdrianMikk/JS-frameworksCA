@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navigation/Header/Header";
 import Store from "../../components/Shop";
-// import { useShoppingCartStore } from '../Cart/index';
 
 function Checkout() {
   const cart = Store((state) => state.cart || []);
@@ -29,9 +28,8 @@ function Checkout() {
         {cart.map((item) => (
           <li key={item.id}>
             <span>{item.title}</span>
-            <span>Quantity: {item.quantity}</span>
-            <span>
-              Total:{" "}
+            <span> Quantity: {item.quantity}</span>
+            <span> Total:{" "}
               {formatPrice(
                 item.discountedPrice
                   ? item.discountedPrice * item.quantity

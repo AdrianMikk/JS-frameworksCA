@@ -1,74 +1,18 @@
-import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navigation/Header/Header";
-// import store from "../../store";
 import Store from "../../components/Shop";
 import { Link } from "react-router-dom";
 
-// export const useShoppingCartStore = create((set) => ({
-//   cart: [],
-//   addToCart: (product) =>
-//     set((state) => ({
-//       cart: state.cart.some((item) => item.id === product.id)
-//         ? state.cart.map((item) =>
-//             item.id === product.id
-//               ? { ...item, quantity: item.quantity + 1 }
-//               : item
-//           )
-//         : [...state.cart, { ...product, quantity: 1 }],
-//     })),
-//   removeFromCart: (productId) =>
-//     set((state) => ({
-//       cart: state.cart.filter((item) => item.id !== productId),
-//     })),
-//   incrementQuantity: (productId) =>
-//     set((state) => ({
-//       cart: state.cart.map((item) =>
-//         item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-//       ),
-//     })),
-//   decrementQuantity: (productId) =>
-//     set((state) => ({
-//       cart: state.cart.map((item) =>
-//         item.id === productId && item.quantity > 1
-//           ? { ...item, quantity: item.quantity - 1 }
-//           : item
-//       ),
-//     })),
-// }));
-
-// function calculateTotalPrice(cart) {
-//   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-// }
-
-// function ShoppingCart() {
-//   const cart = useShoppingCartStore((state) => state.cart || []);
-//   const addToCart = useShoppingCartStore((state) => state.addToCart);
-//   const removeFromCart = useShoppingCartStore((state) => state.removeFromCart);
-//   // const incrementQuantity = useShoppingCartStore(
-//   //   (state) => state.incrementQuantity
-//   // );
-//   // const decrementQuantity = useShoppingCartStore(
-//   //   (state) => state.decrementQuantity
-//   // );
-
-//   useEffect(() => {
-//     const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-//     addToCart(storedCart);
-//   }, [addToCart]);
-
-//   useEffect(() => {
-//     localStorage.setItem("cartItems", JSON.stringify(cart));
-//   }, [cart]);
 
 const ShoppingCart = () => {
   // Accessing the store state and actions correctly
-  const { cart, removeFromCart, incrementQuantity, decrementQuantity } = Store(
+  const { cart, removeFromCart, incrementQuantity, decrementQuantity, clearCart } = Store(
     (state) => ({
       cart: state.cart || [],
       removeFromCart: state.removeFromCart,
       incrementQuantity: state.incrementQuantity,
       decrementQuantity: state.decrementQuantity,
+      clearCart: state.clearCart,
     })
   );
 
@@ -127,6 +71,9 @@ const ShoppingCart = () => {
       <Link to="/checkout" className="checkout-button">
         Complete Order
       </Link>
+              <button className="clear-button" onClick={() => clearCart()}>
+                Clear Cart
+              </button>
     </div>
   );
 };

@@ -2,15 +2,24 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import SearchFunction from "../../Search";
 import Store from "../../Shop";
-
-// Import your store or context if needed
+import Hamburger from "hamburger-react";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isOpen, setOpen] = useState(false);
   const itemCount = Store((state) => state.cart);
   const totalItems = itemCount.reduce((acc, item) => acc + item.quantity, 0);
 
+  const toggleMenu = () => {
+    setOpen(!isOpen);
+  };
+
   return (
     <div>
+            <button className="burger-button" onClick={toggleMenu}>
+        <Hamburger />
+      </button>
+      <div className={isOpen ? "menu open" : "menu"}>
       <nav className="navbar">
         <ul className="header-links">
           <li>
@@ -30,6 +39,7 @@ const Navbar = () => {
           </Link>
         </div>
       </nav>
+     </div>
     </div>
   );
 };

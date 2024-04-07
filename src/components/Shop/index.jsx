@@ -35,6 +35,10 @@ const Store = create(
               : item
           ),
         })),
+        clearCart: () =>
+        set(() => ({
+          cart: [],
+        })),
     }),
     {
       name: "cart-storage",
