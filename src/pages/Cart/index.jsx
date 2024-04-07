@@ -66,14 +66,19 @@ const ShoppingCart = () => {
         ))}
       </ul>
 
-      <div>Total: {calculateTotalPrice(cart)}</div>
-
-      <Link to="/checkout" className="checkout-button">
-        Complete Order
-      </Link>
-              <button className="clear-button" onClick={() => clearCart()}>
-                Clear Cart
-              </button>
+      {cart.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <>
+          <div>Total: {calculateTotalPrice(cart)}</div>
+          <Link to="/checkout" className="checkout-button">
+            Complete Order
+          </Link>
+          <button className="clear-button" onClick={() => clearCart()}>
+            Clear Cart
+          </button>
+        </>
+      )}
     </div>
   );
 };

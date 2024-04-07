@@ -7,7 +7,6 @@ import Store from "../../components/Shop";
 function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(0);
   const { id } = useParams();
   const addToCart = Store((state) => state.addToCart);
 
@@ -43,7 +42,7 @@ function ProductDetails() {
 
   return (
     <div className="product-specific">
-      <Navbar cartItemCount={cartItemCount} />
+      <Navbar />
       <h2 className="product-title">{product.title}</h2>
       <p className="product-details">{product.description}</p>
       <img
@@ -78,10 +77,11 @@ function ProductDetails() {
           );
         })}
       </div>
-      <button onClick={() => addToCart(product)}>Add to Cart</button>
+      <button onClick={handleAddToCart}>Add to Cart</button>
       {addedToCart && <p>Added to Cart!</p>}
     </div>
   );
 }
 
 export default ProductDetails;
+
