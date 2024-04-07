@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navigation/Header/Header";
 // import store from "../../store";
 import Store from "../../components/Shop";
+import { Link } from "react-router-dom";
 
 // export const useShoppingCartStore = create((set) => ({
 //   cart: [],
@@ -88,11 +89,6 @@ const ShoppingCart = () => {
           <li key={data.id} className="cart-item">
             <span className="item-name">{data.title}</span>
             <div className="item-details">
-              <span className="item-price">
-                {data.discountedPrice
-                  ? formatPrice(data.discountedPrice)
-                  : formatPrice(data.price)}
-              </span>
               <div className="quantity-container">
                 <button
                   className="quantity-button"
@@ -122,19 +118,11 @@ const ShoppingCart = () => {
                 Remove
               </button>
             </div>
-            <span className="item-total">
-              Total:{" "}
-              {formatPrice(
-                data.discountedPrice
-                  ? data.discountedPrice * data.quantity
-                  : data.price * data.quantity
-              )}
-            </span>
           </li>
         ))}
       </ul>
 
-      <div>Total: {formatPrice(calculateTotalPrice(cart))}</div>
+      <div>Total: {calculateTotalPrice(cart)}</div>
 
       <Link to="/checkout" className="checkout-button">
         Complete Order

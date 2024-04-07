@@ -33,12 +33,6 @@ function ProductDetails() {
     return <div>Loading...</div>;
   }
 
-  const handleAddToCart = () => {
-    addToCart(product);
-    setAddedToCart(true);
-    setCartItemCount(cartItemCount + 1);
-  };
-
   // Calculate discount if exists
   const discount = product.discountedPrice
     ? product.price - product.discountedPrice
