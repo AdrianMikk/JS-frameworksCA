@@ -6,7 +6,8 @@ import Store from "../../Shop";
 // Import your store or context if needed
 
 const Navbar = () => {
-  const itemCount = Store((state) => state.cart.length);
+  const itemCount = Store((state) => state.cart);
+  const totalItems = itemCount.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <div>
@@ -23,7 +24,9 @@ const Navbar = () => {
         <div className="cart-icon">
           <Link to="/cart">
             <FaShoppingCart />
-            {itemCount > 0 && <span className="cart-counter">{itemCount}</span>}
+            {totalItems > 0 && (
+              <span className="cart-counter">{totalItems}</span>
+            )}
           </Link>
         </div>
       </nav>
