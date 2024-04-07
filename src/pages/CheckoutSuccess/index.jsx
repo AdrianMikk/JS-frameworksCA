@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useMemo } from "react";
 
 function Checkout() {
-  // Accessing the store state and actions correctly
   const { cart, clearCart } = Store(
     (state) => ({
       cart: state.cart || [],
@@ -16,8 +15,7 @@ function Checkout() {
     })
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const memoizedCart = useMemo(() => cart, []); // Memoize cart to save value before clearCart
+  const memoizedCart = useMemo(() => cart, []); 
 
   function calculateTotalPrice(cart) {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -30,7 +28,7 @@ function Checkout() {
 
   useEffect(() => {
     clearCart();
-  }, []); // Clear cart on component mount
+  }, []); 
 
   
   return (

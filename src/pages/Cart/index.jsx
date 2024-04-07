@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 
 const ShoppingCart = () => {
-  // Accessing the store state and actions correctly
   const { cart, removeFromCart, incrementQuantity, decrementQuantity, clearCart } = Store(
     (state) => ({
       cart: state.cart || [],
