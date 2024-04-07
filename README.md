@@ -1,6 +1,6 @@
 # My E-commerce Store App
 
-- Picture
+![image](https://github.com/AdrianMikk/JS-frameworksCA/assets/113434165/06996f9c-c7ba-43dd-a69a-ddc1677ece14)
 
 This is an e-commerce site made using React & the Noroff API.
 
