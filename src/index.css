@@ -491,7 +491,7 @@ button:hover {
   .cart-icon {
     position: fixed;
     right: 0;
-    top: 0;
+    top: 70px;
     z-index: 1000;
   }
 
