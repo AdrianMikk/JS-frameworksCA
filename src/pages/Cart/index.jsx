@@ -83,26 +83,62 @@ const ShoppingCart = () => {
         <title>Shopping Cart</title>
       </Helmet>
       <h1>Shopping Cart</h1>
-      <ul>
-        {cart.map(
-          (item) => (
-            console.log(item),
-            (
-              <li key={item.id}>
-                <span>{item.name}</span>
-                {/* <button onClick={() => incrementQuantity(item.id)}>+</button> */}
-                {/* <span>{item.quantity}</span> */}
-                {/* <button onClick={() => decrementQuantity(item.id)}>-</button> */}
-                <span>${item.price * item.quantity}</span>
-                <div>Quantity: {item.quantity}</div>
-                <img src={item.image.url} alt={item.name} />
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
-              </li>
-            )
-          )
-        )}
+      <ul className="cart-list">
+        {cart.map((data) => (
+          <li key={data.id} className="cart-item">
+            <span className="item-name">{data.title}</span>
+            <div className="item-details">
+              <span className="item-price">
+                {data.discountedPrice
+                  ? formatPrice(data.discountedPrice)
+                  : formatPrice(data.price)}
+              </span>
+              <div className="quantity-container">
+                <button
+                  className="quantity-button"
+                  onClick={() => decrementQuantity(data.id)}
+                >
+                  -
+                </button>
+                <span className="item-quantity">{data.quantity}</span>
+                <button
+                  className="quantity-button"
+                  onClick={() => incrementQuantity(data.id)}
+                >
+                  +
+                </button>
+              </div>
+              {data.image && (
+                <img
+                  src={data.image.url}
+                  className="cart-image"
+                  alt={data.title}
+                />
+              )}
+              <button
+                className="remove-button"
+                onClick={() => removeFromCart(data.id)}
+              >
+                Remove
+              </button>
+            </div>
+            <span className="item-total">
+              Total:{" "}
+              {formatPrice(
+                data.discountedPrice
+                  ? data.discountedPrice * data.quantity
+                  : data.price * data.quantity
+              )}
+            </span>
+          </li>
+        ))}
       </ul>
-      <div>Total: ${calculateTotalPrice(cart)}</div>
+
+      <div>Total: {formatPrice(calculateTotalPrice(cart))}</div>
+
+      <Link to="/checkout" className="checkout-button">
+        Complete Order
+      </Link>
     </div>
   );
 };

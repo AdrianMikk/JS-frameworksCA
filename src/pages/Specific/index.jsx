@@ -7,6 +7,7 @@ import Store from "../../components/Shop";
 function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
   const { id } = useParams();
   const addToCart = Store((state) => state.addToCart);
 
@@ -32,6 +33,12 @@ function ProductDetails() {
     return <div>Loading...</div>;
   }
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    setAddedToCart(true);
+    setCartItemCount(cartItemCount + 1);
+  };
+
   // Calculate discount if exists
   const discount = product.discountedPrice
     ? product.price - product.discountedPrice
@@ -42,7 +49,7 @@ function ProductDetails() {
 
   return (
     <div className="product-specific">
-      <Navbar />
+      <Navbar cartItemCount={cartItemCount} />
       <h2 className="product-title">{product.title}</h2>
       <p className="product-details">{product.description}</p>
       <img

@@ -1,29 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './Navbar';
+import ProductDetails from './ProductDetails';
+import Cart from './Cart';
 
-const initialState = {
-    cartItems: [],
-    cartTotal: 0,
-    cartTotalAmount: 0
-};
+function ParentComponent() {
+  const [cartItemCount, setCartItemCount] = useState(0);
 
-export const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-        addToCart: (state, action) => {
-            state.cartItems.push(action.payload);
-            state.cartTotal += 1;
-            state.cartTotalAmount += action.payload.price;
-        },
-        removeFromCart: (state, action) => {
-            const updatedCart = state.cartItems.filter(item => item.id !== action.payload);
-            state.cartItems = updatedCart;
-            state.cartTotal -= 1;
-            state.cartTotalAmount -= action.payload.price;
-        }
-    }
-});
+  // Function to update cart item count
+  const updateCartItemCount = (count) => {
+    setCartItemCount(count);
+  };
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+  return (
+    <Router>
+      <Navbar cartItemCount={cartItemCount} />
+      <Switch>
+        <Route exact path="/" component={ProductDetails} />
+        <Route path="/product/:id" render={(props) => <ProductDetails {...props} updateCartItemCount={updateCartItemCount} />} />
+        <Route path="/cart" component={Cart} />
+      </Switch>
+    </Router>
+  );
+}
 
-export default cartSlice.reducer;
+export default ParentComponent;
+

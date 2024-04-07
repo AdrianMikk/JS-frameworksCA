@@ -1,31 +1,21 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/index.jsx";
 import Contact from "./pages/Contact/index.jsx";
 import ProductDetails from "./pages/Specific/index.jsx";
 import FaShoppingCart from "./pages/Cart/index.jsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/products/:id",
-    element: <ProductDetails />,
-  },
-  {
-    path: "/cart",
-    element: <FaShoppingCart />,
-  },
-]);
+import Checkout from "./pages/CheckoutSuccess/index.jsx";
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<FaShoppingCart />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </Router>
   );
 }
 
