@@ -15,7 +15,7 @@
 .header .header-links li a:hover {
   color: blue;
 }
-.header input[type=search] {
+.header input[type="search"] {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -27,4 +27,4 @@
 }
 .header .cart-icon:hover {
   color: blue;
-}/*# sourceMappingURL=nav.css.map */
+}

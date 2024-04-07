@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navigation/Header/Header";
-import { FaStar } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa6";
-import { useShoppingCartStore } from "../Cart/index";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import Store from "../../components/Shop";
 
 function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const { id } = useParams();
-  const addToCart = useShoppingCartStore((state) => state.addToCart);
+  const addToCart = Store((state) => state.addToCart);
 
   useEffect(() => {
     fetch(`https://v2.api.noroff.dev/online-shop/${id}`)
@@ -22,14 +21,16 @@ function ProductDetails() {
       });
   }, [id]);
 
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+      setAddedToCart(true);
+    }
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
-
-  const handleAddToCart = () => {
-    addToCart(product);
-    setAddedToCart(true);
-  };
 
   // Calculate discount if exists
   const discount = product.discountedPrice
@@ -76,15 +77,10 @@ function ProductDetails() {
           );
         })}
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button onClick={() => addToCart(product)}>Add to Cart</button>
       {addedToCart && <p>Added to Cart!</p>}
     </div>
   );
 }
 
 export default ProductDetails;
-
-
-
-
-
