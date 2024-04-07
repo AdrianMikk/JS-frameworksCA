@@ -2,7 +2,7 @@
 
 ![image](https://github.com/AdrianMikk/JS-frameworksCA/assets/113434165/06996f9c-c7ba-43dd-a69a-ddc1677ece14)
 
-[Website]([https://www.linkedin.com/in/adrian-johannessen-5b5b3b1b3/](https://adrian-react-ecom.netlify.app/))
+[Website](https://adrian-react-ecom.netlify.app/)
 
 
 This is an e-commerce site made using React & the Noroff API.
