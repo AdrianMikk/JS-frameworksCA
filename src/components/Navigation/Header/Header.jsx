@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div>
             <button className="burger-button" onClick={toggleMenu}>
-        <Hamburger />
+        <Hamburger color={isOpen ? "black" : "white"} />
       </button>
       <div className={isOpen ? "menu open" : "menu"}>
       <nav className="navbar">
